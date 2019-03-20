@@ -76,6 +76,51 @@ namespace studentExercises.Data
             }
         }
 
+        public List<Student> GetAllStudents()
+        {
+
+            using (SqlConnection conn = Connection)
+            {
+                // Note, we must Open() the connection, the "using" block doesn't do that for us.
+                conn.Open();
+
+                // We must "use" commands too.
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    // Here we setup the command with the SQL we want to execute before we execute it.
+                    cmd.CommandText = "SELECT Id, FirstName, LastName FROM Student";
+
+                    // Execute the SQL in the database and get a "reader" that will give us access to the data.
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // A list to hold the exercises we retrieve from the database.
+                    List<Student> listOfStudents = new List<Student>();
+
+                    // Read() will return true if there's more data to read
+                    while (reader.Read())
+                    {
+
+                        Student student = new Student
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName"))
+                        };
+
+
+                        // ...and add that exercise object to our list.
+                        listOfStudents.Add(student);
+                    }
+
+                    // We should Close() the reader. Unfortunately, a "using" block won't work here.
+                    reader.Close();
+
+                    // Return the list of exercises who whomever called this method.
+                    return listOfStudents;
+                }
+            }
+        }
+
 
         public List<Exercise> GetExerciseByLanguage(string language)
         {
@@ -233,6 +278,25 @@ namespace studentExercises.Data
                     cmd.Parameters.Add(new SqlParameter("@lastName", instructor.LastName));
                     cmd.Parameters.Add(new SqlParameter("@slackHandle", instructor.SlackHandle));
                     cmd.Parameters.Add(new SqlParameter("@cohortId", instructor.CohortId));
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddExerciseToStudent(Student student, Exercise exercise)
+        {
+
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    // More string interpolatione
+                    cmd.CommandText = $"INSERT INTO AssignedExercises (StudentId, ExerciseId) Values (@studentId, @exerciseId)";
+
+                    cmd.Parameters.Add(new SqlParameter("@studentId", student.Id));
+                    cmd.Parameters.Add(new SqlParameter("@exerciseId", exercise.Id));
 
                     cmd.ExecuteNonQuery();
                 }

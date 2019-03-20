@@ -59,21 +59,11 @@ namespace studentExercises
 
 
             //Assign an existing exercise to an existing student.
+            List<Student> listOfStudents = repository.GetAllStudents();
+            Student firstStudent = listOfStudents[0];
+            Exercise firstExercise = listOfExercises[3];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            repository.AddExerciseToStudent(firstStudent, firstExercise);
 
         }
 

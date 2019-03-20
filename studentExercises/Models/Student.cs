@@ -4,16 +4,7 @@ using System.Collections.Generic;
 namespace studentExercises.Models
 {
     public class Student
-    {
-        public Student(int cohortId, string firstName, string lastName, string slackHandle, Cohort co)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            SlackHandle = slackHandle;
-            CohortId = cohortId;
-            Cohort = co;
-            studentExercises = new List<Exercise>();
-        }
+    {       
 
         public int Id { get; set; }
 
