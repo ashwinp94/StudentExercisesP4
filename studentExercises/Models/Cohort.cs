@@ -5,13 +5,6 @@ namespace studentExercises.Models
 {
     public class Cohort
     {
-        public Cohort(string cohortName)
-        {
-            CohortName = cohortName;
-            studentList = new List<Student>();
-            intructorList = new List<Instructor>();
-
-        }
 
         public string CohortName { get; set; }
 

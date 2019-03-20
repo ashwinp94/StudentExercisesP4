@@ -5,14 +5,6 @@ namespace studentExercises.Models
 {
     public class Instructor
     {
-        public Instructor(string firstName, string lastName, string slackHandle, int cohortId, Cohort co)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            SlackHandle = slackHandle;
-            Cohort = co;
-            CohortId = cohortId;
-        }
 
         public int Id { get; set; }
 
