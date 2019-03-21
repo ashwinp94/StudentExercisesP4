@@ -48,9 +48,10 @@ namespace studentExercises
             Instructor Madi = new Instructor
             {
                 FirstName = "Madi",
-                LastName = "Piper",
-                SlackHandle = "MPiper",
-                CohortId = firstCohort.Id
+                LastName = "Peper",
+                SlackHandle = "MPeper",
+                CohortId = firstCohort.Id,
+                Cohort = firstCohort
             };
 
             repository.AddInstructor(Madi);
