@@ -67,8 +67,12 @@ namespace studentExercises
             repository.AddExerciseToStudent(firstStudent, firstExercise);
 
         }
-
-
+//notes for challenge 1:
+    //int studentId = reader...
+    //if(!student.ContainsKey(studentId))
+    // loop through students add cogort then  isnide the whiile loop do 
+    //if (!reader.isdbnull(reader.getordinal("exerciseid")
+    //students.values.tolist()
 
         public static void PrintExerciseReport(string title, List<Exercise> listOfExercises)
         {
