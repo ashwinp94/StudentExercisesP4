@@ -31,8 +31,8 @@ namespace studentExercises
 
             //Insert a new exercise into the database.
 
-            //Exercise StudentExercises = new Exercise("Student Exercises", "C#");
-            //repository.AddExercise(StudentExercises);
+            Exercise StudentExercises = new Exercise("Student Exercises", "C#");
+            repository.AddExercise(StudentExercises);
 
 
             //Find all instructors in the database. Include each instructor's cohort.
@@ -53,7 +53,7 @@ namespace studentExercises
                 CohortId = firstCohort.Id
             };
 
-            //repository.AddInstructor(Madi);
+            repository.AddInstructor(Madi);
             instructors = repository.GetAllInstructorsWithCohort();
             PrintInstructorReport("Your Instructors", instructors);
 
@@ -66,6 +66,8 @@ namespace studentExercises
             repository.AddExerciseToStudent(firstStudent, firstExercise);
 
         }
+
+
 
         public static void PrintExerciseReport(string title, List<Exercise> listOfExercises)
         {

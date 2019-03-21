@@ -255,7 +255,10 @@ namespace studentExercises.Data
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     // More string interpolation
-                    cmd.CommandText = $"INSERT INTO Exercise (ExerciseName, Language) Values ('{exercise.ExerciseName}', '{exercise.Language}')";
+                    cmd.CommandText = $"INSERT INTO Exercise (ExerciseName, Language) Values (@exerciseName, @language)";
+
+                    cmd.Parameters.Add(new SqlParameter("@exerciseName", exercise.ExerciseName));
+                    cmd.Parameters.Add(new SqlParameter("@language", exercise.Language));
                     cmd.ExecuteNonQuery();
                 }
             }
